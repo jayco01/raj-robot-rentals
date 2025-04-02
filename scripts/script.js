@@ -11,7 +11,8 @@ You are encouraged to use the provided naming convention for ease of review.
 
 // INSERT YOUR CODE HERE
 
-
+let modelName = 'XYZ';
+let duration = 0;
 
 
 
@@ -27,9 +28,15 @@ You are encouraged to use the provided naming convention for ease of review.
 
 // INSERT YOUR CODE HERE
 
+function recalculate() {
+    let costLabel = document.getElementById("calculated-cost");
 
-
-
+    if (modelName === "XYZ") {
+        costLabel.innerHTML = duration * 100;
+    } else if (modelName === "CPRG") {
+        costLabel.innerHTML = duration * 213;
+    }
+}
 
 
 /****************** model button logic ******************/
@@ -42,14 +49,26 @@ You are encouraged to use the provided naming convention for ease of review.
     - if modelName is currently "CPRG", change the value of modelName to "XYZ", and change the innerHTML of the model-text span element to "Model XYZ"
     - then, recalculate() the total cost.
 - finally, uncomment the following line of JavaScript to have this function run automatically whenever the pseudo-button is clicked: */
-    // modelButton.addEventListener("click", changeModel);
+
 
 // INSERT YOUR CODE HERE
 
+const modelButton = document.getElementById("model-button");
 
+function changeModel() {
+    let modelText = document.getElementById("model-text");
 
+    if (modelName === "XYZ") {
+        modelName = "CPRG";
+        modelText.innerHTML = "Model CPRG";
+    } else if (modelName === "CPRG") {
+        modelName = "XYZ";
+        modelText.innerHTML = "Model XYZ";
+    }
+    recalculate();
+}   
 
-
+modelButton.addEventListener("click", changeModel);
 
 
 /****************** duration button logic ******************/
@@ -65,5 +84,21 @@ You are encouraged to use the provided naming convention for ease of review.
 
 // INSERT YOUR CODE HERE
 
+let durationButton = document.getElementById("duration-button");
+
+function changeDuration() {
+    let durationText = document.getElementById("duration-text");
+
+    let newDuration = prompt("Enter a new duration: ");
+
+    duration = parseInt(newDuration);
+
+    durationText.innerHTML = duration;
+    
+
+    recalculate();
+}
+
+durationButton.addEventListener("click", changeDuration);
 
 
